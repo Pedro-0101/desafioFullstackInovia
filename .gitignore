@@ -1,0 +1,36 @@
+# dependências
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# build
+dist/
+build/
+
+# envs e configs locais
+.env
+.env.local
+.env.*.local
+
+# cache do TS
+*.tsbuildinfo
+
+# IDEs/editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# client (React/Vite/Next)
+client/node_modules/
+client/dist/
+
+# coverage de testes
+coverage/
+"node_modules/" 
