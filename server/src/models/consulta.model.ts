@@ -1,27 +1,30 @@
 import { Schema, model, Types, InferSchemaType } from "mongoose";
 
+const status = ["Agendado", "Confirmado", "Executado"] as const;
+
 const consultaSchema = new Schema(
-    {
-        nutricionista: {
-            type: Types.ObjectId,
-            ref: "Nutricionista",
-            required: true,
-            index: true
-        },
-
-        pacienteRef: {
-            type: Types.ObjectId,
-            ref: "Paciente",
-            required: true,
-            index: true
-        },
-
-        inicio: { type: Date, required: true, index: true },
-        fim: { type: Date, required: true, index: true },
-
-        observacoes: { type: String, trim: true }
+  {
+    nutricionista: {
+      type: Types.ObjectId,
+      ref: "Nutricionista",
+      required: true,
+      index: true,
     },
-    { timestamps: true }
+
+    pacienteRef: {
+      type: Types.ObjectId,
+      ref: "Paciente",
+      required: true,
+      index: true,
+    },
+
+    inicio: { type: Date, required: true, index: true },
+    fim: { type: Date, required: true, index: true },
+
+    observacoes: { type: String, trim: true },
+    status: { type: String, enum: status, required: true },
+  },
+  { timestamps: true }
 );
 
 export type Consulta = InferSchemaType<typeof consultaSchema>;
