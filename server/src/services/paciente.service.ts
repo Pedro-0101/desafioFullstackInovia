@@ -1,14 +1,15 @@
-import { Paciente, PacienteModel } from "../models/paciente.model";
+import { CreatePacienteDto } from "../dtos/paciente.dto";
+import { Paciente, PacienteDocument, PacienteModel } from "../models/paciente.model";
 
 export class PacienteService {
-  async inserirPaciente(): Promise<Paciente> {
-    const paciente = await PacienteModel.create({
-      nome: "Pedro",
-      email: "pedro@email.com",
-      telefone: "11955554444",
-      dataNascimento: new Date("1985-07-12"),
-      biotipo: "Ectomorfo",
-      cpf: "52955944831",
+  async inserirPaciente(dto: CreatePacienteDto): Promise<PacienteDocument> {
+    const paciente: PacienteDocument = await PacienteModel.create({
+      nome: dto.nome,
+      email: dto.email,
+      telefone: dto.telefone,
+      dataNascimento: new Date(dto.dataNascimento),
+      biotipo: dto.dataNascimento,
+      cpf: dto.cpf,
     });
     return paciente;
   }
