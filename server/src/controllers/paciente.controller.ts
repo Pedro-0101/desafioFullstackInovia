@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { PacienteService } from "../services/paciente.service";
-import { CreatePacienteDto } from "../dtos/paciente.dto";
+import { CriarPacienteDto } from "../dtos/paciente.dto";
 
 const service = new PacienteService();
 
 export class PacienteController {
   async criar(req: Request, res: Response) {
-    const dto: CreatePacienteDto = req.body;
+    const dto: CriarPacienteDto = req.body;
     const paciente = await service.inserirPaciente(dto);
 
     res.status(201).json({

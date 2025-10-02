@@ -8,3 +8,13 @@ export async function conectarMongo(uri: string) {
 
   console.log("✅ MongoDB conectado");
 }
+
+export async function limparBanco() {
+  for (const nome of Object.keys(mongoose.connection.collections)) {
+  const collection = mongoose.connection.collections[nome];
+  if (collection) {
+    await collection.deleteMany({});
+  }
+}
+  console.log("🧹 Banco limpo!");
+}

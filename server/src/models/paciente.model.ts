@@ -28,11 +28,11 @@ const pacienteSchema = new Schema(
   { timestamps: true }
 );
 
-pacienteSchema.index({ cpf: 1 }, { unique: true });
-
-// Tipo com campos obrigatorios para criacao de paciente
+// Tipo com campos obrigatórios definidos no schema de paciente (sem _id e métodos do mongoose)
 export type Paciente = InferSchemaType<typeof pacienteSchema>;
-// HydratedDocument insere campos como _id, createdAt e updatedAt
-export type PacienteDocument = HydratedDocument<Paciente>; 
-// Modelo usoado pelo mongoose para comunicar com o banco
-export const PacienteModel = model("Paciente", pacienteSchema);
+
+// Documento retornado do banco já "hidratado", incluindo _id, createdAt, updatedAt e métodos do mongoose
+export type PacienteDocument = HydratedDocument<Paciente>;
+
+// Modelo usado pelo mongoose para comunicar com o banco (consultas, inserts, updates, deletes)
+export const PacienteModel = model<Paciente>("Paciente", pacienteSchema);

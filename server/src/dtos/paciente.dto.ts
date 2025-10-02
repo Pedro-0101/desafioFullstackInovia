@@ -33,7 +33,7 @@ export function validarCPF(cpf?: string): boolean {
   );
 }
 
-export class CreatePacienteDto {
+export class CriarPacienteDto {
   @IsString()
   @IsNotEmpty({ message: "O nome do paciente nao pode ser vazio" })
   @Length(3, 100, {
