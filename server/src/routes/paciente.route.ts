@@ -9,5 +9,6 @@ const controller = new PacienteController()
 
 router.post("/", validateDto(CriarPacienteDto), expressAsyncHandler(controller.criar.bind(controller)))
 router.get("/", expressAsyncHandler(controller.listar.bind(controller)));
+router.patch("/:id", validateDto(CriarPacienteDto), expressAsyncHandler(controller.alterar.bind(controller)))
 
 export default router;

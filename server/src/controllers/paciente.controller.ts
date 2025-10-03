@@ -6,7 +6,7 @@ const service = new PacienteService();
 
 export class PacienteController {
   async criar(req: Request, res: Response) {
-    const dto: CriarPacienteDto = req.body;
+    const dto: CriarPacienteDto = req.body.dto;
     const paciente = await service.inserirPaciente(dto);
 
     res.status(201).json({
@@ -24,8 +24,29 @@ export class PacienteController {
 
   async listar(req: Request, res: Response) {
     const pacientes = await service.listarPacientes();
+
     res.status(200).json({
       pacientes
+    })
+  }
+
+  async alterar(req: Request, res: Response){
+    const dto: CriarPacienteDto = req.body.dto;
+    const id = req.params.id;
+    if(!id) throw new Error("Id invalido")
+    const paciente = await service.alterarPaciente(id, dto);
+    if (!paciente) throw new Error("Paciente não encontrado");
+
+    res.status(200).json({
+      id: paciente._id,
+      nome: paciente.nome,
+      email: paciente.email,
+      telefone: paciente.telefone,
+      dataNascimento: paciente.dataNascimento,
+      biotipo: paciente.biotipo,
+      cpf: paciente.cpf,
+      criadoEm: paciente.createdAt,
+      atualizadoEm: paciente.updatedAt,
     })
   }
 }

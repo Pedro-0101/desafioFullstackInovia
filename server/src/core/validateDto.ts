@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from "express";
 
 export function validateDto(dtoClass: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const dtoObj = plainToInstance(dtoClass, req.body);
+    const dtoObj = plainToInstance(dtoClass, req.body.dto);
     const errors = await validate(dtoObj);
 
     if (errors.length > 0) {
@@ -14,7 +14,7 @@ export function validateDto(dtoClass: any) {
       return res.status(400).json({ erros: mensagens });
     }
 
-    req.body = dtoObj;
+    req.body.dto = dtoObj;
     next();
   };
 }
