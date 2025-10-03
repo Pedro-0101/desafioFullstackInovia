@@ -21,4 +21,11 @@ export class PacienteController {
       atualizadoEm: paciente.updatedAt,
     });
   }
+
+  async listar(req: Request, res: Response) {
+    const pacientes = await service.listarPacientes();
+    res.status(200).json({
+      pacientes
+    })
+  }
 }

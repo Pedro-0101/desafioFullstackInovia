@@ -8,5 +8,6 @@ const router = Router()
 const controller = new PacienteController()
 
 router.post("/", validateDto(CriarPacienteDto), expressAsyncHandler(controller.criar.bind(controller)))
+router.get("/", expressAsyncHandler(controller.listar.bind(controller)));
 
 export default router;
